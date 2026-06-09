@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Crear cuenta</h1>
+
+    <!-- method POST envía los datos a la ruta /registro en app.py -->
+    <form method="POST" action="/registro">
+
+        <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre"        <!-- name="nombre" coincide con request.form["nombre"] en app.py -->
+                placeholder="Tu nombre" required>
+        </div>
+
+        <div class="campo">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"         <!-- type=email valida formato de correo -->
+                placeholder="tucorreo@email.com" required>
+        </div>
+
+        <div class="campo">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena"   <!-- type=password oculta el texto -->
+                placeholder="Mínimo 6 caracteres" required>
+        </div>
+
+        <button type="submit">Crear cuenta</button>
+
+    </form>
+
+    <p class="link-alterno">¿Ya tienes cuenta? 
+        <a href="/login">Inicia sesión</a>
+    </p>
+
+{% endblock %}

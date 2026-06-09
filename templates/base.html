@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto3</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo">Mi App</div>
+        <div class="nav-links">
+            <!-- current_user viene de flask-login, is_authenticated verifica si hay sesión activa -->
+            {% if current_user.is_authenticated %}
+                <span class="nav-usuario">Hola, {{ current_user.nombre }}</span>  <!-- muestra el nombre -->
+                <a href="/logout">Cerrar sesión</a>
+            {% else %}
+                <a href="/login">Iniciar sesión</a>
+                <a href="/registro">Registrarse</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main>
+        <!-- mensajes flash: aparecen una sola vez y desaparecen al recargar -->
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                    <div class="flash">{{ mensaje }}</div>   <!-- conecta con flash() en app.py -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block contenido %}{% endblock %}
+    </main>
+
+</body>
+</html>

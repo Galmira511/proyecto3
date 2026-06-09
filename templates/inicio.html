@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+    <!-- current_user.nombre viene de flask-login, toma el dato del modelo Usuario en app.py -->
+    <h1>Bienvenido, {{ current_user.nombre }}</h1>
+
+    <p>Has iniciado sesión correctamente con <strong>{{ current_user.email }}</strong>.</p>
+
+    <div class="tarjeta">
+        <h2>Tu cuenta</h2>
+        <p>Desde aquí podrías acceder a tus registros, configuración y más.</p>
+        <a href="/logout" class="btn-agregar">Cerrar sesión</a>
+    </div>
+
+{% endblock %}
