@@ -94,7 +94,9 @@ def logout():
     return redirect(url_for("login"))
 
 
+# crea las tablas al arrancar la app — funciona tanto con python app.py como con gunicorn
+with app.app_context():
+    db.create_all()                    # crea la tabla usuario si no existe
+
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()                                   # crea las tablas si no existen
-    app.run(debug=True)
+    app.run(debug=True)                # solo corre el servidor si ejecutas python app.py directamente
