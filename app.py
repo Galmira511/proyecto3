@@ -9,7 +9,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///usuarios.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-
+@app.route("/")                              # ruta raíz — cuando alguien entra sin ruta específica
+def index():
+    return redirect(url_for("login"))        # redirige automáticamente al login
 # === configuración de flask-login ===
 login_manager = LoginManager(app)                        # inicializa el manejador de sesiones
 login_manager.login_view = "login"                       # si no hay sesión, redirige a /login
